@@ -4,6 +4,7 @@
 \useoutertheme{split}
 \beamertemplatenavigationsymbolsempty
 
+\usepackage{lmodern}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -26,6 +27,21 @@
 \setbeamercolor*{normal text}{fg=textgrey, bg=white}
 \setbeamercolor*{titlelike}{fg=titlegreen, bg=white}
 
+\AtBeginSection[]
+{
+  \begin{frame}
+  \frametitle{Overview}
+  \tiny{\tableofcontents[currentsection]}
+  \end{frame}
+}
+\AtBeginSubsection[]
+{
+  \begin{frame}
+  \frametitle{Overview}
+  \tiny{\tableofcontents[currentsection,currentsubsection]}
+  \end{frame}
+}
+
 \title{Data Structures}
 \author{Maarten Dhondt}
 \institute{Realdolmen}
@@ -40,7 +56,115 @@
 
 \frame{\titlepage}
 
+\begin{frame}
+	\frametitle{Who am I?}
+	\ldots
+\end{frame}
+
+\begin{frame}
+  \frametitle{Overview}
+  \tiny{\tableofcontents}
+\end{frame}
+
 \section{Introductory Data Structures}
+
+\begin{frame}
+	\frametitle{Data Type vs. Data Structure}
+	\ldots
+\end{frame}
+
+\subsection{Array}
+
+\begin{frame}
+	\frametitle{Array}
+	\ldots
+\end{frame}
+\begin{frame}
+	\frametitle{Array}
+	\ldots
+\end{frame}
+
+\subsection{Linked List}
+
+\begin{frame}
+	\frametitle{Linked List}
+	\ldots
+\end{frame}
+\begin{frame}
+	\frametitle{Linked List}
+	\ldots
+\end{frame}
+
+\subsection{Hash Table}
+
+\begin{frame}
+	\frametitle{Hash Table}
+	\ldots
+\end{frame}
+\begin{frame}
+	\frametitle{Hash Table}
+	\ldots
+\end{frame}
+
+\subsection{Heap}
+
+\begin{frame}
+	\frametitle{Tree}
+	\ldots
+\end{frame}
+
+\begin{frame}
+	\frametitle{Binary Heap}
+	\ldots
+\end{frame}
+\begin{frame}
+	\frametitle{Binary Min-Heap}
+	\ldots
+\end{frame}
+
+\subsection{Red-Black Tree}
+
+\begin{frame}
+	\frametitle{Red-Black Tree}
+	\ldots
+\end{frame}
+\begin{frame}
+	\frametitle{Red-Black Tree}
+	\ldots
+\end{frame}
+
 \section{Java Collection API \& Map API}
+
+\subsection{Java Collection API}
+
+\begin{frame}
+	\frametitle{Java Collection API}
+	\ldots
+\end{frame}
+\begin{frame}
+	\frametitle{Java Collection API}
+	\ldots
+\end{frame}
+
+\subsection{Java Map API}
+
+\begin{frame}
+	\frametitle{Java Map API}
+	\ldots
+\end{frame}
+\begin{frame}
+	\frametitle{Java Map API}
+	\ldots
+\end{frame}
+
+
 \section{Advanced Data Structures}
+
+\subsection{Stuff\ldots}
+
+\begin{frame}
+	\frametitle{Stuff\ldots}
+	\ldots
+\end{frame}
+
 \end{document}
