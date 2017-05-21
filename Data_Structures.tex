@@ -1,0 +1,46 @@
+\documentclass{beamer}
+\usetheme{Copenhagen}
+\useinnertheme{circles}
+\useoutertheme{split}
+\beamertemplatenavigationsymbolsempty
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+\definecolor{logogreen1}{RGB}{52,166,77}
+\definecolor{logogreen2}{RGB}{73,180,58}
+\definecolor{logogreen3}{RGB}{117,200,44}
+\definecolor{logogreen4}{RGB}{157,212,31}
+\definecolor{logogreen5}{RGB}{67,149,55}
+\definecolor{logogreen6}{RGB}{35,144,63}
+\definecolor{titlegreen}{RGB}{72,147,65}
+\definecolor{textgrey}{RGB}{138,140,142}
+\definecolor{bulletsgreen}{RGB}{171,208,55}
+
+\setbeamercolor*{structure}{fg=bulletsgreen}
+\setbeamercolor*{palette primary}{fg=white,bg=logogreen3}
+\setbeamercolor*{palette quaternary}{fg=white,bg=logogreen6}
+\setbeamercolor*{normal text}{fg=textgrey, bg=white}
+\setbeamercolor*{titlelike}{fg=titlegreen, bg=white}
+
+\title{Data Structures}
+\author{Maarten Dhondt}
+\institute{Realdolmen}
+\date{June 23, 2017}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0mm},\LenToUnit{3.38mm}){#1}}}
+\AddToShipoutPictureFG{
+  \AtPagemyUpperLeft{{\includegraphics[width=.5cm,keepaspectratio]{r.png}}}
+}%
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Introductory Data Structures}
+\section{Java Collection API \& Map API}
+\section{Advanced Data Structures}
+\end{document}
