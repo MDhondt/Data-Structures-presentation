@@ -2,14 +2,18 @@
 \usetheme{Copenhagen}
 \useinnertheme{circles}
 \useoutertheme{split}
+\setbeamertemplate{itemize items}[triangle]
 \beamertemplatenavigationsymbolsempty
 
-\usepackage{lmodern}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
 \usepackage{tikz}
 \usepackage{eso-pic}
+\usepackage{amsmath}
+%\usepackage{pgfpages}
 
 \definecolor{logogreen1}{RGB}{52,166,77}
 \definecolor{logogreen2}{RGB}{73,180,58}
@@ -30,15 +34,15 @@
 \AtBeginSection[]
 {
   \begin{frame}
-  \frametitle{Overview}
+  \frametitle{Outline}
   \tiny{\tableofcontents[currentsection]}
   \end{frame}
 }
 \AtBeginSubsection[]
 {
   \begin{frame}
-  \frametitle{Overview}
-  \tiny{\tableofcontents[currentsection,currentsubsection]}
+  \frametitle{Outline}
+  \tiny{\tableofcontents[sectionstyle=show/shaded,currentsubsection]}
   \end{frame}
 }
 
@@ -52,6 +56,8 @@
   \AtPagemyUpperLeft{{\includegraphics[width=.5cm,keepaspectratio]{r.png}}}
 }%
 
+%\setbeameroption{show notes on second screen=right}
+
 \begin{document}
 
 \frame{\titlepage}
@@ -62,7 +68,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Overview}
+  \frametitle{Outline}
   \tiny{\tableofcontents}
 \end{frame}
 
@@ -70,7 +76,11 @@
 
 \begin{frame}
 	\frametitle{Data Type vs. Data Structure}
-	\ldots
+	\begin{itemize}
+		\item<1-> $\text{Data type} \neq \text{data structure}$
+		\item<2-> \texttt{java.util.HashSet} vs. hash table
+		\item<2-> \texttt{array} vs. array
+	\end{itemize}
 \end{frame}
 
 \subsection{Array}
