@@ -13,6 +13,7 @@
 \usepackage{tikz}
 \usepackage{eso-pic}
 \usepackage{amsmath}
+\usepackage{bookmark}
 %\usepackage{pgfpages}
 
 \definecolor{logogreen1}{RGB}{52,166,77}
@@ -30,6 +31,20 @@
 \setbeamercolor*{palette quaternary}{fg=white,bg=logogreen6}
 \setbeamercolor*{normal text}{fg=textgrey, bg=white}
 \setbeamercolor*{titlelike}{fg=titlegreen, bg=white}
+\setbeamercolor*{block title}{fg=white, bg=logogreen1}
+
+\makeatletter
+\renewcommand{\@makefnmark}{\hbox{\textsuperscript{\tiny{\@thefnmark}}}}
+\makeatother
+
+\newenvironment<>{mydef}[1]{%
+  \setbeamercolor{block title}{fg=white,bg=logogreen6}%
+  \begin{block}#2{#1}}
+{\end{block}}
+
+\newenvironment<>{operations}
+	{\begin{block}{Operations}{#1}}
+	{\end{block}}
 
 \AtBeginSection[]
 {
@@ -60,11 +75,22 @@
 
 \begin{document}
 
+%\section*{Data Structures}
+%\hypertarget{datastructures}{}
+%\bookmark[dest=datastructures]{Data Structures}
+
 \frame{\titlepage}
 
 \begin{frame}
 	\frametitle{Who am I?}
-	\ldots
+	\begin{itemize}\setlength\itemsep{5mm}
+		\item Master of Engineering: Computer Science (KUL)
+		\begin{itemize}
+			\item Computational informatics
+		\end{itemize}
+		\item Realdolmen: acADDemICT in 09/2015
+		\item Current project: Planning infrastructure @ Infrabel
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -75,11 +101,18 @@
 \section{Introductory Data Structures}
 
 \begin{frame}
-	\frametitle{Data Type vs. Data Structure}
+	\frametitle{What are Data Structures?}
+	
+	\begin{mydef}{Data Structure\footnote[frame]{\tiny{Encyclop\ae dia Britannica}}}
+		A way in which data are stored for efficient search and retrieval. Different data structures are suited for different problems.
+	\end{mydef}
+	
+	\vspace{5mm}
+	
 	\begin{itemize}
-		\item<1-> $\text{Data type} \neq \text{data structure}$
-		\item<2-> \texttt{java.util.HashSet} vs. hash table
-		\item<2-> \texttt{array} vs. array
+		\item $\text{Data type} \neq \text{data structure}$
+		\item \texttt{java.util.HashSet} vs. hash table
+		\item \texttt{array} vs. array
 	\end{itemize}
 \end{frame}
 
@@ -87,11 +120,69 @@
 
 \begin{frame}
 	\frametitle{Array}
-	\ldots
+	
+	\begin{definition}
+		\begin{itemize}
+			\item An indexed set of related elements\footnote[frame]{\tiny{Oxford Dictionary}}
+			\item An assemblage of items that are randomly accessible by integers, the index\footnote[frame]{\tiny{National Institute of Standards \& Technology }}
+		\end{itemize}
+	\end{definition}
+	\begin{itemize}
+		\item Example: linear array
+	\end{itemize}
+	\begin{center}\begin{tikzpicture}[scale=0.7,every node/.style={minimum width=1cm,minimum height=1cm,transform shape,anchor=south west}]
+		\draw (0,0) -- (3,0) (0,1) -- (3,1) (0,0) -- (0,1) (1,0) -- (1,1) (2,0) -- (2,1) (5,1) -- (7,1) -- (7,0) -- (5,0) (6,0) -- (6,1) (7,0) -- (7,1);
+		\draw[dashed] (3,0) -- (3,1) -- (5,1) -- (5,0) -- cycle;
+		\node at (0,-1) {$0$};
+		\node at (1,-1) {$1$};
+		\node at (2,-1) {$2$};
+		\node at (5,-1) {$n-1$};
+		\node at (6,-1) {$n$};
+		\node[minimum width=2cm] at (3,-1) {$\cdots$};
+	\end{tikzpicture}\end{center}
 \end{frame}
+
 \begin{frame}
 	\frametitle{Array}
-	\ldots
+	
+	\begin{operations}
+	\begin{itemize}
+		\only<1-3>{\item \parbox{2cm}{\texttt{get}} \phantom{$O($}}
+		\only<4->{\item \parbox{2cm}{\texttt{get}} $O(1)$}
+		\only<1-6>{\item \parbox{2cm}{\texttt{set}} \phantom{$O($}}
+		\only<7->{\item \parbox{2cm}{\texttt{set}} $O(1)$}
+		\only<1-13>{\item \parbox{2cm}{\texttt{indexOf}} \phantom{$O($}}
+		\only<14->{\item \parbox{2cm}{\texttt{indexOf}} $O(n)$}
+	\end{itemize}
+	\end{operations}
+	\begin{center}
+		\begin{tikzpicture}[scale=0.7,every node/.style={minimum width=1cm,minimum height=1cm,transform shape,anchor=south west}]
+			\draw (0,0) -- (3,0) (0,1) -- (3,1) (0,0) -- (0,1) (1,0) -- (1,1) (2,0) -- (2,1) (5,1) -- (7,1) -- (7,0) -- (5,0) (6,0) -- (6,1) (7,0) -- (7,1);
+			\draw[dashed] (3,0) -- (3,1) -- (5,1) -- (5,0) -- cycle;
+			\draw[white] (-.05,0) -- (-.05,1.05);
+			\only<3>{\node[draw,thick,red] at (.985,-.015) {\ldots};}
+			\only<6>{\node[draw,thick,red] at (1.985,-.015) {\ldots};}
+			\only<9>{\node[draw,thick,red] at (-.015,-.015) {\ldots};}
+			\only<10>{\node[draw,thick,red] at (.985,-.015) {\ldots};}
+			\only<11>{\node[draw,thick,red] at (1.985,-.015) {\ldots};}
+			\only<12>{\node[draw,thick,red] at (4.985,-.015) {\ldots};}
+			\only<13>{\node[draw,thick,red] at (5.985,-.015) {\ldots};}
+			\node at (0,-1) {$0$};
+			\node at (1,-1) {$1$};
+			\node at (2,-1) {$2$};
+			\node at (5,-1) {$n-1$};
+			\node at (6,-1) {$n$};
+			\node[minimum width=2cm] at (3,-1) {$\cdots$};
+		\end{tikzpicture}
+	\end{center}
+	\begin{center}
+		\only<1>{\ \vphantom{\texttt{gO(}}}
+		\only<2-4>{\texttt{get(1)} \vphantom{\texttt{gO(}}}
+		\only<5-7>{\texttt{set(2)} \vphantom{\texttt{gO(}}}
+		\only<8-13>{\texttt{indexOf(object)} \vphantom{\texttt{gO(}}}
+		\only<14>{\ \vphantom{\texttt{gO(}}}
+	\end{center}
+	
 \end{frame}
 
 \subsection{Linked List}
