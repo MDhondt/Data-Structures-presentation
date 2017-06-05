@@ -74,7 +74,7 @@
 	}{
 		\begin{frame}
 			\frametitle{Outline}
-			\tiny{\tableofcontents[sectionstyle=show/shaded,currentsubsection]}
+			\tiny{\tableofcontents[sectionstyle=show/shaded,currentsubsection,subsubsectionstyle=show]}
 		\end{frame}
 	}
 }
@@ -234,12 +234,12 @@
 			\node (thirdm) at (11,0) {$\text{O}_3$};
 			\node (thirdr) at (12,0) {};
 			\node[draw=none] (tail) at (14,0) {Tail};
-			\draw[>=latex,->] (head.east) -- ($(firstl.west)+(.5,0)$);
-			\draw[>=latex,->,blue] ($(firstr.east)+(-.5,.2)$) -- ($(secondl.west)+(.5,.2)$);
-			\draw[>=latex,<-,blue] ($(firstr.east)+(-.5,-.2)$) -- ($(secondl.west)+(.5,-.2)$);
+			\draw[>=latex,->,OliveGreen] (head.east) -- ($(firstl.west)+(.5,0)$);
+			\draw[>=latex,->,OliveGreen] ($(firstr.east)+(-.5,.2)$) -- ($(secondl.west)+(.5,.2)$);
+			\draw[>=latex,<-,red] ($(firstr.east)+(-.5,-.2)$) -- ($(secondl.west)+(.5,-.2)$);
 			\draw[>=latex,->,OliveGreen] ($(secondr.east)+(-.5,.2)$) -- ($(thirdl.west)+(.5,.2)$);
-			\draw[>=latex,<-,OliveGreen] ($(secondr.east)+(-.5,-.2)$) -- ($(thirdl.west)+(.5,-.2)$);
-			\draw[>=latex,->] (tail.west) -- ($(thirdr.east)-(.5,0)$);
+			\draw[>=latex,<-,red] ($(secondr.east)+(-.5,-.2)$) -- ($(thirdl.west)+(.5,-.2)$);
+			\draw[>=latex,->,red] (tail.west) -- ($(thirdr.east)-(.5,0)$);
 		\end{tikzpicture}
 	\end{center}
 \end{frame}
@@ -321,14 +321,107 @@
 	\end{definition}
 	
 	\begin{itemize}
+		\item Hash functions: determinism, uniformity, defined range, data normalisation, non-invertible, perfect, \ldots
 		\item Collisions resolution: chaining, open addressing, \ldots
 		\item Example:
 	\end{itemize}
+	
+	\begin{center}
+		\vspace*{-7mm}
+		\begin{tikzpicture}[scale=0.4,every node/.style={minimum width=2cm,minimum height=6mm,transform shape,anchor=south west,draw}]
+			\node[draw=none] (key) at (0,4.8) {Keys};
+			\node[draw=none] (hash1) at (3,5.2) {Hash};
+			\node[draw=none] (hash2) at (3,4.8) {function};
+			\node[draw=none] (buckets) at (6.6,4.8) {Buckets};
+			\node (k1) at (0,3.3) {$k_1$};
+			\node (k2) at (0,2.1) {$k_2$};
+			\node (k3) at (0,0.9) {$k_3$};
+			\node[draw=none,fill=OliveGreen!10,minimum height=48mm] at (3,0) {};
+			\node[draw=none,minimum width=5mm] (b0) at (6,4.2) {$00$};
+			\node[draw=none,minimum width=5mm] (b1) at (6,3.6) {$01$};
+			\node[draw=none,minimum width=5mm] (b2) at (6,3) {$02$};
+			\node[draw=none,minimum width=5mm] (b3) at (6,2.4) {$03$};
+			\node[draw=none,minimum width=5mm] (b4) at (6.1,1.8) {$\vdots$};
+			\node[draw=none,minimum width=5mm] (b13) at (6,1.2) {$13$};
+			\node[draw=none,minimum width=5mm] (b14) at (6,.6) {$14$};
+			\node[draw=none,minimum width=5mm] (b15) at (6,0) {$15$};
+			\node at (6.6,4.2) {};
+			\node at (6.6,3.6) {$v_2$};
+			\node at (6.6,3) {$v_1$};
+			\node at (6.6,2.4) {};
+			\node[draw=none] at (6.6,1.8) {$\vdots$};
+			\node at (6.6,1.2) {};
+			\node at (6.6,.6) {$v_3$};
+			\node at (6.6,0) {};
+			\draw[>=latex,->] (k1.east) -- ($(k1.east)+(1.2,0)$) -- ($(b2.west)-(1.2,0)$) -- (b2.west);
+			\draw[>=latex,->] (k2.east) -- ($(k2.east)+(1.2,0)$) -- ($(b1.west)-(1.2,0)$) -- (b1.west);
+			\draw[>=latex,->] (k3.east) -- ($(k3.east)+(1.2,0)$) -- ($(b14.west)-(1.2,0)$) -- (b14.west);
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Hash Table}
-	\ldots
+	
+	\begin{operations}\begin{itemize}
+		\only<1-4>{\item \parbox{5cm}{\texttt{put}} \vphantom{$O($}}
+		\only<5->{\item \parbox{5cm}{\texttt{put}} $O(1)\,\,/\, O(n)$}
+		\only<1-8>{\item \parbox{5cm}{\texttt{remove}} \vphantom{$O($}}
+		\only<9->{\item \parbox{5cm}{\texttt{remove}} $O(1)\,\,/\, O(n)$}
+		\only<1-12>{\item \parbox{5cm}{\texttt{get}} \vphantom{$O($}}
+		\only<13->{\item \parbox{5cm}{\texttt{get}} $O(1)\,\,/\, O(n)$}
+	\end{itemize}\end{operations}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=0.5,every node/.style={minimum width=2cm,minimum height=6mm,transform shape,anchor=south west,draw}]
+			\draw[white] (-.6,-.1) -- (8.7,-.1);
+			\node[draw=none] (key) at (0,4.8) {Keys};
+			\node[draw=none] (hash1) at (3,5.2) {Hash};
+			\node[draw=none] (hash2) at (3,4.8) {function};
+			\node[draw=none] (buckets) at (6.6,4.8) {Buckets};
+			\node (k1) at (0,3.3) {$k_1$};
+			\only<1-6,10,14>{\node (k2) at (0,2.1) {$k_2$};}
+			\only<7> {\node[text=red] (k2) at (0,2.1) {$k_2$};}
+			\only<8-9> {\node[text=red!50] (k2) at (0,2.1) {$k_2$};}
+			\only<11-13> {\node[text=red,draw=red] (k2) at (0,2.1) {$k_2$};}
+			\node (k3) at (0,0.9) {$k_3$};
+			\only<3-5>{\node (k4) at (-.5,1.5) {$k_4$};}
+			\node[draw=none,fill=OliveGreen!10,minimum height=48mm] at (3,0) {};
+			\node[draw=none,minimum width=5mm] (b0) at (6,4.2) {$00$};
+			\node[draw=none,minimum width=5mm] (b1) at (6,3.6) {$01$};
+			\node[draw=none,minimum width=5mm] (b2) at (6,3) {$02$};
+			\node[draw=none,minimum width=5mm] (b3) at (6,2.4) {$03$};
+			\node[draw=none,minimum width=5mm] (b4) at (6.1,1.8) {$\vdots$};
+			\node[draw=none,minimum width=5mm] (b13) at (6,1.2) {$13$};
+			\node[draw=none,minimum width=5mm] (b14) at (6,.6) {$14$};
+			\node[draw=none,minimum width=5mm] (b15) at (6,0) {$15$};
+			\node at (6.6,4.2) {};
+			\only<4-5>{\node[text=red,draw=none] at (6.6,4.2) {$v_4$};}
+			\only<1-7,10-11,14>{\node at (6.6,3.6) {$v_2$};}
+			\only<8-9>{\node[text=red!50] at (6.6,3.6) {$v_2$};}
+			\only<12-13>{\node[text=red] at (6.6,3.6) {$v_2$};}
+			\node at (6.6,3) {$v_1$};
+			\node at (6.6,2.4) {};
+			\node[draw=none] at (6.6,1.8) {$\vdots$};
+			\node at (6.6,1.2) {};
+			\node at (6.6,.6) {$v_3$};
+			\node at (6.6,0) {};
+			\draw[>=latex,->] (k1.east) -- ($(k1.east)+(1.2,0)$) -- ($(b2.west)-(1.2,0)$) -- (b2.west);
+			\only<1-7,10-11,14>{\draw[>=latex,->] (k2.east) -- ($(k2.east)+(1.2,0)$) -- ($(b1.west)-(1.2,0)$) -- (b1.west);}
+			\only<8-9>{\draw[>=latex,->,red!50] (k2.east) -- ($(k2.east)+(1.2,0)$) -- ($(b1.west)-(1.2,0)$) -- (b1.west);}
+			\only<12-13>{\draw[>=latex,->,red] (k2.east) -- ($(k2.east)+(1.2,0)$) -- ($(b1.west)-(1.2,0)$) -- (b1.west);}
+			\draw[>=latex,->] (k3.east) -- ($(k3.east)+(1.2,0)$) -- ($(b14.west)-(1.2,0)$) -- (b14.west);
+			\only<4-5>{\draw[>=latex,->,red] (k4.east) -- ($(k4.east)+(1.7,0)$) -- ($(b0.west)-(1.2,0)$) -- (b0.west);}
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{center}
+		\only<1>{\ \vphantom{\texttt{g(/}}}
+		\only<2-5>{\texttt{put(O$_4$)} \vphantom{\texttt{g(/}}}
+		\only<6-9>{\texttt{remove(O$_2$)} \vphantom{\texttt{g(/}}}
+		\only<10-13>{\texttt{get(O$_2$)} \vphantom{\texttt{g(/}}}
+		\only<14>{\ \vphantom{\texttt{g(/}}}
+	\end{center}
 \end{frame}
 
 \deeptocsubsection{Tree}
