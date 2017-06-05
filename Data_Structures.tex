@@ -14,6 +14,7 @@
 \usepackage{eso-pic}
 \usepackage{amsmath}
 \usepackage{bookmark}
+\usepackage{ifthen}
 %\usepackage{pgfpages}
 
 \usetikzlibrary{calc}
@@ -48,30 +49,53 @@
 	{\begin{block}{Operations}{#1}}
 	{\end{block}}
 
+
+\setcounter{tocdepth}{4}
+\newboolean{subsectiontoc}
+\setboolean{subsectiontoc}{true}
+\setbeamerfont{subsubsection in toc}{size=\tiny}
+\setbeamertemplate{subsubsection in toc}{\leavevmode\leftskip=3em\inserttocsubsubsection\par}
+%\addtobeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber\newline}{}
+
 \AtBeginSection[]
 {
   \begin{frame}
   \frametitle{Outline}
-  \tiny{\tableofcontents[currentsection]}
+  \tiny{\tableofcontents[currentsection,subsubsectionstyle=hide]}
   \end{frame}
 }
 \AtBeginSubsection[]
 {
-  \begin{frame}
-  \frametitle{Outline}
-  \tiny{\tableofcontents[sectionstyle=show/shaded,currentsubsection]}
-  \end{frame}
+	\ifthenelse{\boolean{subsectiontoc}}{
+		\begin{frame}
+			\frametitle{Outline}
+			\tiny{\tableofcontents[sectionstyle=show/shaded,currentsubsection,subsubsectionstyle=hide]}
+		\end{frame}
+	}{
+		\begin{frame}
+			\frametitle{Outline}
+			\tiny{\tableofcontents[sectionstyle=show/shaded,currentsubsection]}
+		\end{frame}
+	}
 }
 
-\title{Data Structures}
-\author{Maarten Dhondt}
-\institute{Realdolmen}
-\date{June 23, 2017}
+\newcommand{\deeptocsubsection}[1]{
+  \setboolean{subsectiontoc}{false}
+  \subsection{#1}
+  \setboolean{subsectiontoc}{true}
+}
+
 \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
 \put(\LenToUnit{0mm},\LenToUnit{3.38mm}){#1}}}
 \AddToShipoutPictureFG{
   \AtPagemyUpperLeft{{\includegraphics[width=.5cm,keepaspectratio]{r.png}}}
 }
+
+
+\title[{\makebox[.47\paperwidth]{Data Structures\hfill\insertframenumber/\inserttotalframenumber}}]{Data Structures}
+\author{Maarten Dhondt}
+\institute{Realdolmen}
+\date{June 23, 2017}
 
 %\setbeameroption{show notes on second screen=right}
 
@@ -93,7 +117,7 @@
 
 \begin{frame}
   \frametitle{Outline}
-  \tiny{\tableofcontents}
+  \tiny{\tableofcontents[subsubsectionstyle=hide]}
 \end{frame}
 
 \section{Introductory Data Structures}
@@ -276,7 +300,6 @@
 			}
 			\only<11>{\node[draw,thick,red] at (2.985,-.015) {};}
 			\only<12>{\node[draw,thick,red] at (6.985,-.015) {};}
-			
 		\end{tikzpicture}
 	\end{center}
 	\begin{center}
@@ -292,19 +315,30 @@
 
 \begin{frame}
 	\frametitle{Hash Table}
-	\ldots
+	
+	\begin{definition}
+		A dictionary in which keys are mapped to array positions by hash functions.\footnote[frame]{\tiny{National Institute of Standards \& Technology }}
+	\end{definition}
+	
+	\begin{itemize}
+		\item Collisions resolution: chaining, open addressing, \ldots
+		\item Example:
+	\end{itemize}
 \end{frame}
+
 \begin{frame}
 	\frametitle{Hash Table}
 	\ldots
 \end{frame}
 
-\subsection{Heap}
+\deeptocsubsection{Tree}
 
 \begin{frame}
 	\frametitle{Tree}
 	\ldots
 \end{frame}
+
+\subsubsection{Heap}
 
 \begin{frame}
 	\frametitle{Binary Heap}
@@ -315,7 +349,7 @@
 	\ldots
 \end{frame}
 
-\subsection{Red-Black Tree}
+\subsubsection{Red-Black Tree}
 
 \begin{frame}
 	\frametitle{Red-Black Tree}
