@@ -86,13 +86,13 @@
 }
 
 \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
-\put(\LenToUnit{0mm},\LenToUnit{3.38mm}){#1}}}
-\AddToShipoutPictureFG{
+\put(\LenToUnit{0mm},\LenToUnit{3.38mm}){#1}}}%
+\AddToShipoutPictureFG{%
   \AtPagemyUpperLeft{{\includegraphics[width=.5cm,keepaspectratio]{r.png}}}
 }
 
 
-\title[{\makebox[.47\paperwidth]{Data Structures\hfill\insertframenumber/\inserttotalframenumber}}]{Data Structures}
+\title[{\makebox[.45\paperwidth]{Data Structures\hfill\insertframenumber/\inserttotalframenumber}}]{Data Structures}
 \author{Maarten Dhondt}
 \institute{Realdolmen}
 \date{June 23, 2017}
@@ -317,7 +317,7 @@
 	\frametitle{Hash Table}
 	
 	\begin{definition}
-		A dictionary in which keys are mapped to array positions by hash functions.\footnote[frame]{\tiny{National Institute of Standards \& Technology }}
+		A dictionary in which keys are mapped to array positions by hash functions.\footnote[frame]{\tiny{National Institute of Standards \& Technology}}
 	\end{definition}
 	
 	\begin{itemize}
@@ -427,19 +427,97 @@
 \deeptocsubsection{Tree}
 
 \begin{frame}
-	\frametitle{Tree}
-	\ldots
+	\frametitle{Tree}	
+	
+	\begin{definition}
+		A data structure made up of nodes or vertices and edges without having any cycle. A tree that is not empty consists of a root node and potentially many levels of additional nodes that form a hierarchy.
+	\end{definition}
+	
+	\begin{itemize}
+		\item Depth, binary, (nearly) complete, \ldots
+		\item Example:
+	\end{itemize}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=0.5,every node/.style={circle,transform shape,draw}]
+			\node (A) at (1,3) {};
+			\node (B) at (0,2) {};
+			\node (C) at (2,2) {};
+			\node (D) at (0,1) {};
+			\node (E) at (1,1) {};
+			\node (F) at (2,1) {};
+			\node (G) at (3,1) {};
+			\node (H) at (3,0) {};
+			\draw (D) -- (B) -- (A) -- (C) -- (G) -- (H) (C) -- (E) (C) -- (F);
+			\node (I) at (7,3) {};
+			\node (J) at (7,2) {};
+			\node (K) at (6,1.5) {};
+			\node (L) at (8,1.5) {};
+			\node (M) at (7,1) {};
+			\node (N) at (7,0) {};
+			\draw (I) -- (J) -- (K) -- (M) -- (L) -- (J) (M) -- (N);
+			\only<2>{\draw[thick,red] (6,3) -- (8,0) (6,0) -- (8,3);}
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
 
 \subsubsection{Heap}
 
 \begin{frame}
 	\frametitle{Binary Heap}
-	\ldots
+	
+	\begin{definition}[Heap]
+		A complete tree where every node has a key more extreme (greater or less) than or equal to the key of its parent.\footnote[frame]{\tiny{National Institute of Standards \& Technology}}
+	\end{definition}
+	
+	\begin{definition}[Binary Heap]
+		A binary heap data structure is an array object that we can view as a nearly complete binary tree that satisfies the min-heap or max-heap property.\footnote[frame]{\tiny{Introduction to Algorithms By Cormen, Leierson, Rivest \& Stein}}
+	\end{definition}
 \end{frame}
+
 \begin{frame}
-	\frametitle{Binary Min-Heap}
-	\ldots
+	\frametitle{Binary Max-Heap}
+	
+	\begin{block}{}\begin{itemize}
+		\item \parbox{2cm}{\texttt{Parent(n)}} $\lfloor\frac{n-1}{2}\rfloor$
+		\item \parbox{2cm}{\texttt{Left(n)}} $2n+1$
+		\item \parbox{2cm}{\texttt{Right(n)}} $2(n+1)$
+	\end{itemize}\end{block}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=0.5,every node/.style={circle,transform shape,draw,minimum width=8mm}]
+			\node[label={[yshift=-2mm]\scriptsize{$7$}}] (7) at (0,0) {2};
+			\node[label={[yshift=-2mm]\scriptsize{$3$}}] (3) at (.75,1) {8};
+			\node[label={[yshift=-2mm]\scriptsize{$8$}}] (8) at (1.5,0) {4};
+			\node[label={[yshift=-2mm]\scriptsize{$1$}}] (1) at (2.25,2) {14};
+			\node[label={[yshift=-2mm]\scriptsize{$9$}}] (9) at (3,0) {1};
+			\node[label={[yshift=-2mm]\scriptsize{$4$}}] (4) at (3.75,1) {7};
+			\node[label={[yshift=-2mm]\scriptsize{$0$}}] (0) at (4.5,3) {16};
+			\node[label={[yshift=-2mm]\scriptsize{$5$}}] (5) at (5.25,1) {9};
+			\node[label={[yshift=-2mm]\scriptsize{$2$}}] (2) at (6.75,2) {10};
+			\node[label={[yshift=-2mm]\scriptsize{$6$}}] (6) at (8.25,1) {3};
+			\draw (0) -- (1) (0) -- (2) (1) -- (3) (1) -- (4) (3) -- (7) (3) -- (8) (4) -- (9) (2) -- (5) (2) -- (6);
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$0$}},minimum width=8mm,minimum height=8mm] (a0) at (10.8,1) {16};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$1$}},minimum width=8mm,minimum height=8mm] (a1) at (11.6,1) {14};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$2$}},minimum width=8mm,minimum height=8mm] (a2) at (12.4,1) {10};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$3$}},minimum width=8mm,minimum height=8mm] (a3) at (13.2,1) {8};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$4$}},minimum width=8mm,minimum height=8mm] (a4) at (14,1) {7};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$5$}},minimum width=8mm,minimum height=8mm] (a5) at (14.8,1) {9};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$6$}},minimum width=8mm,minimum height=8mm] (a6) at (15.6,1) {3};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$7$}},minimum width=8mm,minimum height=8mm] (a7) at (16.4,1) {2};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$8$}},minimum width=8mm,minimum height=8mm] (a8) at (17.2,1) {4};
+			\node[rectangle,label={[yshift=-5.5mm,xshift=-3mm]\tiny{$9$}},minimum width=8mm,minimum height=8mm] (a9) at (18,1) {1};
+			\draw (a0.north) to [out=30,in=150] (a1.north);
+			\draw (a0.north) to [out=30,in=150] (a2.north);
+			\draw (a2.north) to [out=30,in=150] (a5.north);
+			\draw (a2.north) to [out=30,in=150] (a6.north);
+			\draw (a4.north) to [out=30,in=150] (a9.north);
+			\draw (a1.south) to [out=-30,in=210] (a3.south);
+			\draw (a1.south) to [out=-30,in=210] (a4.south);
+			\draw (a3.south) to [out=-30,in=210] (a7.south);
+			\draw (a3.south) to [out=-30,in=210] (a8.south);
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
 
 \subsubsection{Red-Black Tree}
