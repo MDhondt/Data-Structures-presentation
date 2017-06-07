@@ -906,8 +906,42 @@
 
 \begin{frame}
 	\frametitle{Java Collection API}
-	\ldots
+	\begin{center}
+		\begin{tikzpicture}[scale=.45,every node/.style={transform shape,minimum width=3cm,minimum height=6mm}]
+			\node[fill=OliveGreen!15] (collection)   at (10,6) {Collection};
+			\node[fill=OliveGreen!15] (list)         at (2 ,4) {List};
+			\node[fill=OliveGreen!15] (set)          at (10,4) {Set};
+			\node[fill=OliveGreen!15] (queue)        at (18,4) {Queue};
+			\node[fill=OliveGreen!15] (sortedset)    at (10,2) {SortedSet};
+			\node[fill=OliveGreen!15] (navigableset) at (10,0) {NavigableSet};
+			\node[fill=OliveGreen!15] (deque)        at (18,2) {Deque};
+			\draw[OliveGreen!25,->,>=latex] ($(collection.south)-(.2,0)$) |- (2,5.2) -- (list.north);
+			\draw[OliveGreen!25,->,>=latex] (collection) -- (set);
+			\draw[OliveGreen!25,->,>=latex] ($(set.south)-(.2,0)$) -- ($(sortedset.north)-(.2,0)$);
+			\draw[OliveGreen!25,->,>=latex] (sortedset) -- (navigableset);
+			\draw[OliveGreen!25,->,>=latex] ($(collection.south)+(.2,0)$) |- (18,5.2) -- (queue.north);
+			\draw[OliveGreen!25,->,>=latex] ($(queue.south)-(.2,0)$) -- ($(deque.north)-(.2,0)$);
+			\node[draw=OliveGreen!25] (arraylist)     at (4 ,2) {ArrayList};
+			\node[draw=OliveGreen!25] (linkedlist)    at (4 ,0) {LinkedList};
+			\node[draw=OliveGreen!25] (vector)        at (0 ,2) {Vector};
+			\node[draw=OliveGreen!25] (stack)         at (0 ,0) {Stack};
+			\node[draw=OliveGreen!25] (arraydeque)    at (18,0) {ArrayDeque};
+			\node[draw=OliveGreen!25] (priorityqueue) at (20.5,3) {PriorityQueue};
+			\node[draw=OliveGreen!25] (hashset)       at (13.5,3) {HashSet};
+			\node[draw=OliveGreen!25] (linkedhashset) at (13.5,1.5) {LinkedHashSet};
+			\draw[->,>=latex] ($(list.south)-(.2,0)$) |- (0,3.2) -- (vector.north);
+			\draw[->,>=latex] (vector) -- (stack);
+			\draw[->,>=latex] ($(list.south)+(.2,0)$) |- (4,3.2) -- (arraylist.north);
+			\draw[->,>=latex] (list) |- (linkedlist);
+			\draw[->,>=latex] ($(deque.south)-(.2,0)$) |- (10,1) -| (linkedlist.north);
+			\draw[->,>=latex] ($(deque.south)+(.2,0)$) -- ($(arraydeque.north)+(.2,0)$);
+			\draw[->,>=latex] ($(queue.south)+(.2,0)$) |- (priorityqueue.west);
+			\draw[->,>=latex] ($(set.south)+(.2,0)$) |- (hashset.west);
+			\draw[->,>=latex] (hashset) -- (linkedhashset);
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
+
 \begin{frame}
 	\frametitle{Java Collection API}
 	\ldots
