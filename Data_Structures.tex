@@ -895,11 +895,62 @@
 	\end{itemize}
 \end{frame}
 
+\subsubsection{Binary Search Tree}
+	
+\begin{frame}
+	\frametitle{Binary Search Tree}
+	
+	\begin{definition}
+		A binary tree in which the left child $\leq$ the parent and the right child $\geq$ the parent.
+	\end{definition}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=0.7,every node/.style={circle,transform shape,draw,minimum width=8mm}]
+			\node (2)   at (0   ,2) {2};
+			\node (51)  at (0.75,3) {5};
+			\node (52)  at (1.5 ,2) {5};
+			\node (6)   at (2.25,4) {6};
+			\node (7)   at (3.75,3) {7};
+			\node (8)   at (4.5,2)  {8};
+			\node (2b)  at (8 ,4)   {2};
+			\node (51b) at (8.75,3) {5};
+			\node (7b)  at (9.5 ,2) {7};
+			\node (6b)  at (8.75,1) {6};
+			\node (8b)  at (10.25,1){8};
+			\node (52b) at (8,0)    {5};
+			\draw (6) -- (51) (6) -- (7) (51) -- (2) (51) -- (52) (7) -- (8) (2b) -- (51b) (51b) -- (7b) (7b) -- (6b) (7b) -- (8b) (6b) -- (52b);
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Binary Search Tree}
+	
+	\begin{operations}\begin{itemize}
+		\item \parbox{2cm}{\texttt{insert}} $O(\log n)\,\,/\, O(n)$
+		\item \parbox{2cm}{\texttt{delete}} $O(\log n)\,\,/\, O(n)$
+		\item \parbox{2cm}{\texttt{search}} $O(\log n)\,\,/\, O(n)$
+	\end{itemize}\end{operations}
+\end{frame}
+
 \subsubsection{Red-Black Tree}
 
 \begin{frame}
 	\frametitle{Red-Black Tree}
-	\ldots
+	
+	\begin{itemize}
+		\item Binary search tree
+		\item Approximately balanced
+		\item NIL leaves
+		\item Red-black properties
+		\begin{itemize}
+			\item<2> Every node is either red or black
+			\item<2> Root is black
+			\item<2> Every leaf is black
+			\item<2> If a node is red, its children are black
+			\item<2> For each node, all paths to its descendant leaves contain the same number of black nodes
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -979,7 +1030,7 @@
 	\settowidth{\myl}{\texttt{contains}}
 	\begin{tabular}{lL{20mm}C{\myl}C{\myl}C{\myl}}
 		\toprule
-		& Impl & \texttt{add} & \texttt{contains} & \texttt{get} \\
+		& Impl & \texttt{add} & \texttt{contains} & \texttt{next} \\
 		\midrule
 		HashSet & hash table & \only<2->{$O(1)$} & \only<3->{$O(1)$} & \only<4->{$O(h/n)$} \\
 		LinkedHashSet & hash table linked list & \only<5->{$O(1)$} & \only<6->{$O(1)$} & \only<7->{$O(1)$} \\
