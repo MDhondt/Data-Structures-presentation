@@ -15,6 +15,9 @@
 \usepackage{amsmath}
 \usepackage{bookmark}
 \usepackage{ifthen}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
 %\usepackage{pgfpages}
 
 \usetikzlibrary{calc}
@@ -91,6 +94,10 @@
   \AtPagemyUpperLeft{{\includegraphics[width=.5cm,keepaspectratio]{r.png}}}
 }
 
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newlength{\myl}
+\renewcommand{\arraystretch}{1.3}
 
 \title[{\makebox[.45\paperwidth]{Data Structures\hfill\insertframenumber/\inserttotalframenumber}}]{Data Structures}
 \author{Maarten Dhondt}
@@ -908,51 +915,121 @@
 	\frametitle{Java Collection API}
 	\begin{center}
 		\begin{tikzpicture}[scale=.45,every node/.style={transform shape,minimum width=3cm,minimum height=6mm}]
-			\node[fill=OliveGreen!15] (collection)   at (10,6) {Collection};
-			\node[fill=OliveGreen!15] (list)         at (2 ,4) {List};
-			\node[fill=OliveGreen!15] (set)          at (10,4) {Set};
-			\node[fill=OliveGreen!15] (queue)        at (18,4) {Queue};
-			\node[fill=OliveGreen!15] (sortedset)    at (10,2) {SortedSet};
-			\node[fill=OliveGreen!15] (navigableset) at (10,0) {NavigableSet};
-			\node[fill=OliveGreen!15] (deque)        at (18,2) {Deque};
-			\draw[OliveGreen!25,->,>=latex] ($(collection.south)-(.2,0)$) |- (2,5.2) -- (list.north);
+			\draw[white] (-1.5,-.3) -- (22,8.3);
+			\node[fill=OliveGreen!15] (collection)   at (10,8) {Collection};
+			\node[fill=OliveGreen!15] (list)         at (2 ,6) {List};
+			\node[fill=OliveGreen!15] (set)          at (10,6) {Set};
+			\node[fill=OliveGreen!15] (queue)        at (18,6) {Queue};
+			\node[fill=OliveGreen!15] (sortedset)    at (10,4) {SortedSet};
+			\node[fill=OliveGreen!15] (navigableset) at (10,2) {NavigableSet};
+			\node[fill=OliveGreen!15] (deque)        at (18,4) {Deque};
+			\draw[OliveGreen!25,->,>=latex] ($(collection.south)-(.2,0)$) |- (2,7.2) -- (list.north);
 			\draw[OliveGreen!25,->,>=latex] (collection) -- (set);
-			\draw[OliveGreen!25,->,>=latex] ($(set.south)-(.2,0)$) -- ($(sortedset.north)-(.2,0)$);
 			\draw[OliveGreen!25,->,>=latex] (sortedset) -- (navigableset);
-			\draw[OliveGreen!25,->,>=latex] ($(collection.south)+(.2,0)$) |- (18,5.2) -- (queue.north);
+			\draw[OliveGreen!25,->,>=latex] ($(collection.south)+(.2,0)$) |- (18,7.2) -- (queue.north);
+			\only<1>{\draw[OliveGreen!25,->,>=latex] (set) -- (sortedset);\draw[OliveGreen!25,->,>=latex] (queue) -- (deque);}
+			\only<2->{
+			\draw[OliveGreen!25,->,>=latex] ($(set.south)-(.2,0)$) -- ($(sortedset.north)-(.2,0)$);
 			\draw[OliveGreen!25,->,>=latex] ($(queue.south)-(.2,0)$) -- ($(deque.north)-(.2,0)$);
-			\node[draw=OliveGreen!25] (arraylist)     at (4 ,2) {ArrayList};
-			\node[draw=OliveGreen!25] (linkedlist)    at (4 ,0) {LinkedList};
-			\node[draw=OliveGreen!25] (vector)        at (0 ,2) {Vector};
-			\node[draw=OliveGreen!25] (stack)         at (0 ,0) {Stack};
-			\node[draw=OliveGreen!25] (arraydeque)    at (18,0) {ArrayDeque};
-			\node[draw=OliveGreen!25] (priorityqueue) at (20.5,3) {PriorityQueue};
-			\node[draw=OliveGreen!25] (hashset)       at (13.5,3) {HashSet};
-			\node[draw=OliveGreen!25] (linkedhashset) at (13.5,1.5) {LinkedHashSet};
-			\draw[->,>=latex] ($(list.south)-(.2,0)$) |- (0,3.2) -- (vector.north);
+			\node[draw=OliveGreen!25] (arraylist)     at (4 ,4) {ArrayList};
+			\node[draw=OliveGreen!25] (linkedlist)    at (4 ,2) {LinkedList};
+			\node[draw=OliveGreen!25] (vector)        at (0 ,4) {Vector};
+			\node[draw=OliveGreen!25] (stack)         at (0 ,2) {Stack};
+			\node[draw=OliveGreen!25] (arraydeque)    at (18,2) {ArrayDeque};
+			\node[draw=OliveGreen!25] (priorityqueue) at (20.5,5) {PriorityQueue};
+			\node[draw=OliveGreen!25] (hashset)       at (13.5,5) {HashSet};
+			\node[draw=OliveGreen!25] (linkedhashset) at (13.5,3.5) {LinkedHashSet};
+			\node[draw=OliveGreen!25] (treeset)       at (10,0) {TreeSet};
+			\draw[->,>=latex] ($(list.south)-(.2,0)$) |- (0,5.2) -- (vector.north);
 			\draw[->,>=latex] (vector) -- (stack);
-			\draw[->,>=latex] ($(list.south)+(.2,0)$) |- (4,3.2) -- (arraylist.north);
+			\draw[->,>=latex] ($(list.south)+(.2,0)$) |- (4,5.2) -- (arraylist.north);
 			\draw[->,>=latex] (list) |- (linkedlist);
-			\draw[->,>=latex] ($(deque.south)-(.2,0)$) |- (10,1) -| (linkedlist.north);
+			\draw[->,>=latex] ($(deque.south)-(.2,0)$) |- (10,3) -| (linkedlist.north);
 			\draw[->,>=latex] ($(deque.south)+(.2,0)$) -- ($(arraydeque.north)+(.2,0)$);
 			\draw[->,>=latex] ($(queue.south)+(.2,0)$) |- (priorityqueue.west);
 			\draw[->,>=latex] ($(set.south)+(.2,0)$) |- (hashset.west);
 			\draw[->,>=latex] (hashset) -- (linkedhashset);
+			\draw[->,>=latex] (navigableset) -- (treeset);}
 		\end{tikzpicture}
 	\end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Java Collection API}
-	\ldots
+	\frametitle{List Interface}
+	
+	\footnotesize{
+	\settowidth{\myl}{\texttt{contains}}
+	\begin{tabular}{llC{\myl}C{\myl}C{\myl}C{\myl}}
+		\toprule
+		& Impl & \texttt{add} & \texttt{remove} & \texttt{contains} & \texttt{get} \\
+		\midrule
+		LinkedList & linked list & \only<2->{$O(1)$} & \only<3->{$O(1)$} & \only<4->{$O(n)$} & \only<5->{$O(n)$} \\
+		ArrayList & array & \only<6->{$O(1)$} & \only<7->{$O(n)$} & \only<8->{$O(n)$} & \only<9->{$O(1)$} \\
+		Vector & array & \only<10>{$O(1)$} & \only<10>{$O(n)$} & \only<10>{$O(n)$} & \only<10>{$O(1)$} \\
+		Stack & array & \only<10>{$O(1)$} & \only<10>{$O(n)$} & \only<10>{$O(n)$} & \only<10>{$O(1)$} \\
+		\bottomrule
+	\end{tabular}
+	}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Set Interface}
+	
+	\footnotesize{
+	\settowidth{\myl}{\texttt{contains}}
+	\begin{tabular}{lL{20mm}C{\myl}C{\myl}C{\myl}}
+		\toprule
+		& Impl & \texttt{add} & \texttt{contains} & \texttt{get} \\
+		\midrule
+		HashSet & hash table & \only<2->{$O(1)$} & \only<3->{$O(1)$} & \only<4->{$O(h/n)$} \\
+		LinkedHashSet & hash table linked list & \only<5->{$O(1)$} & \only<6->{$O(1)$} & \only<7->{$O(1)$} \\
+		TreeSet & red-black tree & \only<8->{$O(\log n)$} & \only<9->{$O(\log n)$} & \only<10>{$O(\log n)$} \\
+		\bottomrule
+	\end{tabular}
+	}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Queue Interface}
+	
+	
 \end{frame}
 
 \subsection{Java Map API}
 
 \begin{frame}
 	\frametitle{Java Map API}
-	\ldots
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=.6,every node/.style={transform shape,minimum width=3cm,minimum height=6mm}]
+			\draw[white] (-1.5,-.3) -- (11.5,8.3);
+			\node[fill=OliveGreen!15] (map)          at (5,6) {Map};
+			\node[fill=OliveGreen!15] (sortedmap)    at (5,4) {SortedMap};
+			\node[fill=OliveGreen!15] (navigablemap) at (5,2) {NavigableMap};
+			\draw[OliveGreen!25,->,>=latex] (map) -- (sortedmap);
+			\draw[OliveGreen!25,->,>=latex] (sortedmap) -- (navigablemap);
+			\only<2->{
+			\node[draw=OliveGreen!25] (enummap)         at (0 ,8) {EnumMap};
+			\node[draw=OliveGreen!25] (weakhashmap)     at (5 ,8) {WeakHashMap};
+			\node[draw=OliveGreen!25] (identityhashmap) at (10,8) {IdentityHashMap};
+			\node[draw=OliveGreen!25] (hashmap)         at (0 ,4) {HashMap};
+			\node[draw=OliveGreen!25] (linkedhashmap)   at (0 ,2) {LinkedHashMap};
+			\node[draw=OliveGreen!25] (treemap)         at (5 ,0) {TreeMap};
+			\node[draw=OliveGreen!25] (hashtable)       at (10,4) {HashTable};
+			\node[draw=OliveGreen!25] (properties)      at (10,2) {Properties};
+			\draw[->,>=latex] (navigablemap) -- (treemap);
+			\draw[->,>=latex] (hashmap) -- (linkedhashmap);
+			\draw[->,>=latex] (hashtable) -- (properties);
+			\draw[->,>=latex] (map) -- (weakhashmap);
+			\draw[->,>=latex] ($(map.north)-(.2,0)$) |- (0,6.8) -- (enummap.south);
+			\draw[->,>=latex] ($(map.north)+(.2,0)$) |- (10,6.8) -- (identityhashmap.south);
+			\draw[->,>=latex] ($(map.south)-(.2,0)$) |- (0,5.2) -- (hashmap.north);
+			\draw[->,>=latex] ($(map.south)+(.2,0)$) |- (10,5.2) -- (hashtable.north);
+			}
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
+
 \begin{frame}
 	\frametitle{Java Map API}
 	\ldots
