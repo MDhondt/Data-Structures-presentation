@@ -2302,22 +2302,8 @@
 			\item X-fast trie: $O(n\log U)$ space
 			\item Y-fast trie: $O(n)$ space
 		\end{itemize}
-		\item $U = 2^k, k\in\mathbb{N}$
+		\item $U = 2^k, k \in \mathbb{N}$
 	\end{itemize}
-\end{frame}
-
-\section*{}
-\title[{\makebox[.45\paperwidth]{Data Structures\hfill\#rjcconf}}]{Data Structures}
-\author[{\makebox[.45\paperwidth]{\#rproud\hfill Maarten Dhondt}}]{Maarten Dhondt}
-
-\begin{frame}
-	\begin{center}
-		\LARGE{Thank you for your attention!}
-	\end{center}
-	\vspace{3mm}
-	\begin{center}
-		Slides: \textit{https://github.com/MDhondt/Data-Structures-presentation}
-	\end{center}
 \end{frame}
 
 \end{document}
