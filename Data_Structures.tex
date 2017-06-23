@@ -140,8 +140,8 @@
 \begin{frame}
 	\frametitle{What are Data Structures?}
 	
-	\begin{mydef}{Data Structure\footnote[frame]{\tiny{Encyclop\ae dia Britannica}}}
-		A way in which data are stored for efficient search and retrieval. Different data structures are suited for different problems.
+	\begin{mydef}{Data Structure}
+		A way in which data are stored for efficient search and retrieval. Different data structures are suited for different problems.\footnote[frame]{\tiny{Encyclop\ae dia Britannica}}
 	\end{mydef}
 	
 	\vspace{5mm}
@@ -322,7 +322,6 @@
 		\only<2-5>{\texttt{addFirst(O$_4$)} \vphantom{\texttt{gAO(/}}}
 		\only<6-9>{\texttt{insertAt(2)} \vphantom{\texttt{gAO(/}}}
 		\only<10-13>{\texttt{indexOf(O$_2$)} \vphantom{\texttt{gAO(/}}}
-		\only<14>{\ \vphantom{\texttt{gAO(/}}}
 	\end{center}
 \end{frame}
 
@@ -435,7 +434,6 @@
 		\only<2-5>{\texttt{put(O$_4$)} \vphantom{\texttt{g(/}}}
 		\only<6-9>{\texttt{remove(O$_2$)} \vphantom{\texttt{g(/}}}
 		\only<10-13>{\texttt{get(O$_2$)} \vphantom{\texttt{g(/}}}
-		\only<14>{\ \vphantom{\texttt{g(/}}}
 	\end{center}
 \end{frame}
 
@@ -1246,10 +1244,10 @@
 
 \section{Advanced Data Structures}
 
-\subsection{Skip list}
+\subsection{Skip List}
 
 \begin{frame}
-	\frametitle{Skip list}
+	\frametitle{Skip List}
 	
 	\begin{itemize}
 		\item Balanced binary tree alternative
@@ -1266,7 +1264,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Skip list}
+	\frametitle{Skip List}
 	
 	\begin{center}
 		\begin{tikzpicture}[scale=.6,every node/.style={transform shape,minimum width=8mm,draw,anchor=south west},pointer/.style={minimum width=4mm,minimum height=8mm},circ/.style={circle,fill,inner sep=0pt,text width=.7mm,align=center,anchor=center,minimum width=.7mm}]
@@ -1341,7 +1339,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Skip list}
+	\frametitle{Skip List}
 	
 	\begin{block}{Insertion}\begin{itemize}
 		\item \texttt{insert at level=1}
@@ -1447,7 +1445,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Skip list}
+	\frametitle{Skip List}
 	
 	\begin{operations}\begin{itemize}
 		\only<1>{\item \parbox{2cm}{\texttt{insert}} \vphantom{$O(\log n)$}}
@@ -1901,7 +1899,7 @@
 			\node[draw=none,fill=none] at (24,1.5) {u\hspace{11mm}min\hspace{11mm}max};
 			\node at (24.5,1.5) {4};
 			\node at (26.2,1.5) {2};
-			\only<9>{\node[draw=red] at (26.2,1.5) {2};}
+			\only<10>{\node[draw=red] at (26.2,1.5) {2};}
 			\node at (28,1.5) {3};
 			\node (s5) at (25.8,.2) {};
 			\node (50) at (28.5,.2) {};
@@ -2050,7 +2048,7 @@
 			\draw[->,>=latex,opacity=.5] (51.center) -- (k53.north);
 			\only<3->{\node[draw=none,fill=none,red,anchor=south] at (k1.north) {\texttt{successor(1)}};}
 			\only<5->{\node[draw=none,fill=none,red,anchor=south,xshift=5mm] at (k11.north) {\texttt{successor(0)}};}
-			\only<8->{\node[draw=none,fill=none,red,anchor=south] at (k5.north) {\texttt{minimum}};}
+			\only<9->{\node[draw=none,fill=none,red,anchor=south] at (k5.north) {\texttt{minimum}};}
 		\end{tikzpicture}
 	\end{center}
 	
